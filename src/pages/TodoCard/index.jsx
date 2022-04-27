@@ -5,6 +5,7 @@ import LayoutContainer from "../../components/LayoutContainer";
 import CreateCardList from "./copmonents/CreateCardList";
 
 const TodoCard = () => {
+
     return (
         <LayoutContainer>
             <Grid container
@@ -12,7 +13,7 @@ const TodoCard = () => {
                   direction={"column"}
             >
                 <Grid item className={'card'}>
-                    My Card
+                    Моя доска
                 </Grid>
                 <Grid item>
                     <CreateCardList />

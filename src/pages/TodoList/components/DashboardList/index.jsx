@@ -9,7 +9,7 @@ const Card = ({item = {}}) => {
     const navigate = useNavigate();                 // ф-я для навигации
 
     const onclickOnCard = () => {
-        navigate(`${APP_LINK.CARD}/${item.id}`)     // навигация ????????????
+        navigate(`${APP_LINK.CARD}/${item.id}`)     // переход на страницу созданной доски
     }
 
     return (
