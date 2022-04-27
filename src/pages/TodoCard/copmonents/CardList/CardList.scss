@@ -1,0 +1,29 @@
+.new-list {
+  margin-bottom: 20px;
+  margin-left: 8px;
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.new-list-title {
+  align-self: center;
+  font-size: x-large;
+}
+
+.new-list-element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  height: 30px;
+  background-color: green;
+  color: white;
+  border-radius: 7px;
+}
+
+.check-of-element {
+  position: absolute;
+  left: 210px;
+  cursor: pointer;
+}

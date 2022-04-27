@@ -1,0 +1,22 @@
+.new-item-container {
+  width: 250px;
+  height: 50px;
+}
+
+.new-dashboard {
+  background-color: green;
+  color: white;
+  border-radius: 7px 7px 0 0;
+  cursor: pointer;
+  height: 100%;
+
+  &.new-dashboard_closed {
+    border-radius: 7px;
+  }
+}
+
+.new-dashboard-form {
+  border: 1px solid black;
+  height: 150px;
+  padding: 10px;
+}
