@@ -1,7 +1,8 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import TodoList from "./pages/TodoList";
-import TodoCard from "./pages/TodoCard";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {Routes} from 'react-router'
+import PageOfDashboards from "./pages/PageOfDashboards";
+import PageOfCards from "./pages/PageOfCards";
 import React from "react";
 import {APP_LINK} from "./constants/general";
 
@@ -11,9 +12,9 @@ function App() {
     return (
       <Router>
         <Routes>
-            <Route path={'/'}  element={<TodoList />}>
+            <Route path={'/'}  element={<PageOfDashboards />}>
             </Route>
-            <Route path={`${APP_LINK.CARD}/:id`} element={<TodoCard />}>
+            <Route path={`${APP_LINK.CARD}/:id`} element={<PageOfCards />}>
             </Route>
         </Routes>
       </Router>

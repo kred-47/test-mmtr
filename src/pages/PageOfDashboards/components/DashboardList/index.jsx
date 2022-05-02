@@ -1,15 +1,19 @@
 import React from "react";
 import {Grid} from "@mui/material";
 import './DashboardList.scss';
-import {useNavigate} from "react-router";
+import {useNavigate} from "react-router-dom";
 import {APP_LINK} from "../../../../constants/general";
+import {useDispatch, useSelector} from "react-redux";
+import {listSelector, setCard} from "../../../../toolkit/listDashboard/data";
 
-const Card = ({item = {}}) => {
+const Element = ({item = {}}) => {
 
-    const navigate = useNavigate();                 // ф-я для навигации
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onclickOnCard = () => {
         navigate(`${APP_LINK.CARD}/${item.id}`)     // переход на страницу созданной доски
+        dispatch(setCard(item));
     }
 
     return (
@@ -21,7 +25,9 @@ const Card = ({item = {}}) => {
     )
 }
 
-const DashboardList = ({data= []}) => {
+const DashboardList = () => {
+
+    const data = useSelector(listSelector);
 
     return (
         <Grid
@@ -31,7 +37,7 @@ const DashboardList = ({data= []}) => {
             spacing={2}
         >
             {data.map((i, index) => {
-                return <Card key={index} item={i}/>
+                return <Element key={index} item={i}/>
             })}
         </Grid>
     )

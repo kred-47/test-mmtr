@@ -1,10 +1,14 @@
 import React from "react";
 import {Grid} from "@mui/material";
-import './TodoCard.scss'
+import './PageOfCards.scss'
 import LayoutContainer from "../../components/LayoutContainer";
 import CreateCardList from "./copmonents/CreateCardList";
+import {cardSelector} from "../../toolkit/listDashboard/data";
+import {useSelector} from "react-redux";
 
-const TodoCard = () => {
+const PageOfCards = () => {
+
+    const currentCard = useSelector(cardSelector);
 
     return (
         <LayoutContainer>
@@ -13,7 +17,7 @@ const TodoCard = () => {
                   direction={"column"}
             >
                 <Grid item className={'card'}>
-                    Моя доска
+                    {currentCard?.title}
                 </Grid>
                 <Grid item>
                     <CreateCardList />
@@ -23,4 +27,4 @@ const TodoCard = () => {
     )
 }
 
-export default TodoCard;
+export default PageOfCards;

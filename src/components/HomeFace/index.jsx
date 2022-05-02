@@ -1,5 +1,5 @@
 import React from "react";
-import {useNavigate} from "react-router";
+import {useNavigate} from "react-router-dom";
 import SentimentSatisfiedSharpIcon from "@mui/icons-material/SentimentSatisfiedSharp";
 import './HomeFace.scss';
 
@@ -12,7 +12,7 @@ const HomeFace = () => {
 
     return (
         <div className={'home-face'}>
-            <SentimentSatisfiedSharpIcon fontSize={"large"} onClick={handleClick}/>
+            <SentimentSatisfiedSharpIcon fontSize={"large"} onClick={handleClick} style={{cursor: "pointer"}} />
         </div>
     )
 }

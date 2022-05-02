@@ -1,10 +1,13 @@
 import {Button, Grid, IconButton, TextField} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import React, {useState} from "react";
-import './NewDashBoard.scss';
+import './CreateDashboard.scss';
 import CloseIcon from '@mui/icons-material/Close';
+import {nanoid} from "nanoid";
+import {listSelector, setList} from "../../../../toolkit/listDashboard/data";
+import {useDispatch, useSelector} from "react-redux";
 
-const NewDashBoard = ({addBoardInListData}) => {
+const CreateDashboard = () => {
 
     const [open, setOpen] = useState(false);        // состояние поля с созданием новой доски
     const [inputValue, setInputValue] = useState('');   // состояние инпута, очищает его после ввода
@@ -26,8 +29,19 @@ const NewDashBoard = ({addBoardInListData}) => {
     }
 
     const onClickSave = () => {
-        addBoardInListData(inputValue)
+        onClickAddDashboard(inputValue)
         setOpen(false);
+    }
+
+    const dispatch = useDispatch();
+
+    const onClickAddDashboard = (item = '') => { // ?????????
+        const obj = {   // создаем объект со св-вами:
+            title: item,
+            color: '#' + Math.floor(Math.random()*16777215).toString(16),
+            id: nanoid(12)
+        }
+        dispatch(setList(obj));
     }
 
     return (
@@ -89,4 +103,4 @@ const NewDashBoard = ({addBoardInListData}) => {
     )
 }
 
-export default NewDashBoard;
+export default CreateDashboard;

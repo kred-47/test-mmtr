@@ -3,14 +3,7 @@
 }
 
 .add-list {
-  margin-top: 20px;
-}
-
-.list-form {
-  width: 200px;
-  height: 100px;
-  border: 1px solid black;
-
+  padding-top: 20px;
 }
 
 .add-list-card {
@@ -27,4 +20,11 @@
   height: 25px;
   top: -15px;
   right: -290px;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex-basis: 100%;
 }
