@@ -12,7 +12,7 @@ const Element = ({item = {}}) => {
     const dispatch = useDispatch();
 
     const onclickOnCard = () => {
-        navigate(`${APP_LINK.CARD}/${item.id}`)     // переход на страницу созданной доски
+        navigate(`${APP_LINK.CARD}/${item.id}`)
         dispatch(setCard(item));
     }
 

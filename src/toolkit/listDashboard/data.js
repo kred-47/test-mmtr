@@ -1,12 +1,12 @@
-import {createEntityAdapter, createSelector, createSlice} from "@reduxjs/toolkit";
+import { createEntityAdapter, createSelector, createSlice } from "@reduxjs/toolkit";
 
 const listDashboardDataAdapter = createEntityAdapter();
 
 export const listDataSlice = createSlice({
     name: 'listDashboard',
     initialState: listDashboardDataAdapter.getInitialState({
-        list: [], //список дашбордов
-        card: {}, //дашборд, при нажатии на который переходим в карточки
+        list: [],
+        card: {},
         loader: false
     }),
     reducers: {
@@ -22,7 +22,7 @@ export const listDataSlice = createSlice({
         }
 
     }
-})
+});
 
 const { reducer, actions } = listDataSlice;
 
@@ -32,6 +32,6 @@ export const listSelector = createSelector(stateSelector, state => state.list);
 export const cardSelector = createSelector(stateSelector, state => state.card);
 
 
-export const { setList, setCard, clearAllStates } = actions
+export const { setList, setCard, clearAllStates } = actions;
 
 export default reducer;

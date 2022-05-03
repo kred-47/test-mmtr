@@ -1,15 +1,12 @@
-import React, {useState} from "react";
-import {Grid} from "@mui/material";
+import React from "react";
+import { Grid } from "@mui/material";
 import './PageOfDashboards.scss'
 import CreateDashboard from "./components/CreateDashboard";
 import DashboardList from "./components/DashboardList";
 import LayoutContainer from "../../components/LayoutContainer";
-import {nanoid} from "nanoid";
-import {useDispatch, useSelector} from "react-redux";
-import {listSelector, setList} from "../../toolkit/listDashboard/data";
+
 
 const PageOfDashboards = () => {
-    // const [listData, setListData] = useState([]);   // состояние досок
 
     return (
        <LayoutContainer>

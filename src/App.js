@@ -1,10 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import {Routes} from 'react-router'
+import { Routes } from 'react-router'
 import PageOfDashboards from "./pages/PageOfDashboards";
 import PageOfCards from "./pages/PageOfCards";
 import React from "react";
-import {APP_LINK} from "./constants/general";
+import { APP_LINK } from "./constants/general";
 
 
 function App() {

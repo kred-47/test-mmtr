@@ -1,5 +1,5 @@
 import React from "react";
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import './PageOfCards.scss'
 import LayoutContainer from "../../components/LayoutContainer";
 import CreateCardList from "./copmonents/CreateCardList";

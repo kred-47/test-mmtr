@@ -1,7 +1,7 @@
-import { configureStore, combineReducers, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { persistStore } from 'redux-persist';
 import { persistedReducer } from "./reducer";
-import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/es/constants";
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from "redux-persist/es/constants";
 
 const store = configureStore({
   reducer: persistedReducer,

@@ -1,4 +1,4 @@
-import {createEntityAdapter, createSelector, createSlice} from "@reduxjs/toolkit";
+import { createEntityAdapter, createSelector, createSlice } from "@reduxjs/toolkit";
 
 const cardDashboardDataAdapter = createEntityAdapter();
 
@@ -19,7 +19,7 @@ export const cardDataSlice = createSlice({
             state.columns = [];
         }
     }
-})
+});
 
 const { reducer, actions } = cardDataSlice;
 
@@ -27,6 +27,6 @@ const stateSelector = state => state.cardDashboard;
 
 export const columnsSelector = createSelector(stateSelector, state => state.columns);
 
-export const { addColumns, updateColumns, clearColumns } = actions
+export const { addColumns, updateColumns, clearColumns } = actions;
 
 export default reducer;

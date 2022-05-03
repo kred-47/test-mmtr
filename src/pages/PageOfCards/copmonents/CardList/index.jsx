@@ -1,64 +1,64 @@
-import React, {useEffect, useState} from "react";
-import {Grid, TextField, Divider} from "@mui/material";
+import React from "react";
+import { Grid, TextField, Divider } from "@mui/material";
 import './CardList.scss'
-import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
-import {nanoid} from "nanoid";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { nanoid } from "nanoid";
 import CheckIcon from '@mui/icons-material/Check';
 import ComponentMyMenu from "./ComponentMyMenu";
 
 const onDragEnd = (result,  columns, setColumns) => {
-    if (!result.destination) return;        // если нет конечного пути драга - return.
-    const { source, destination } = result; // источник и конечный путь деструктурируются из резулт
+    if (!result.destination) return;
+    const { source, destination } = result;
 
-    if (source.droppableId !== destination.droppableId) { // если не совпадают айди источника и конечного пункта, то
-        const sourceColumn = columns.find(column => column.id === source.droppableId); // объявляем колонки-источники
-        const destColumn = columns.find(column => column.id === destination.droppableId); // объявляем колонки-конечные
-        const sourceItems = [...sourceColumn.elements];     // объявляем элементы колонки-источника
-        const destItems = [...destColumn.elements];         // объявляем элементы колонки-конечной
-        const [removed] = sourceItems.splice(source.index, 1); // (метод)выним. по индексу элемент из колонки-ист
-        destItems.splice(destination.index, 0, removed);    // (метод)помещ. этот элемент в колонку-конечную
+    if (source.droppableId !== destination.droppableId) {
+        const sourceColumn = columns.find(column => column.id === source.droppableId);
+        const destColumn = columns.find(column => column.id === destination.droppableId);
+        const sourceItems = [...sourceColumn.elements];
+        const destItems = [...destColumn.elements];
+        const [removed] = sourceItems.splice(source.index, 1);
+        destItems.splice(destination.index, 0, removed);
         const res = columns.map(el => {
-            if (el.id === source.droppableId) {     // айди элемента совпал с айди источника
-                return {...el, elements: sourceItems}  //  добавляем в массив элемент из источника
+            if (el.id === source.droppableId) {
+                return {...el, elements: sourceItems}
             }
 
-            if (el.id === destination.droppableId) {    // айди элемента совпал с айди конечного
-                return  {...el, elements: destItems}    // добавляем в масив элемент из конца
+            if (el.id === destination.droppableId) {
+                return  {...el, elements: destItems}
             }
 
-            return el; // нет совпадений по условию - возвращаем массив в прежнем виде
+            return el;
         })
-        setColumns(res); // вызов вышеописанной ф-и
+        setColumns(res);
     } else {    // иначе
-        const column = columns.find(column => column.id === source.droppableId); // объявляем колонку источник
-        const copiedItems = [...column?.elements];  // копирование массива column
-        const [removed] = copiedItems.splice(source.index, 1);  // (метод)выним. по индексу элемент из колонки-ист
-        copiedItems.splice(destination.index, 0, removed);  // (метод)помещ. этот элемент в колонку-конечную
+        const column = columns.find(column => column.id === source.droppableId);
+        const copiedItems = [...column?.elements];
+        const [removed] = copiedItems.splice(source.index, 1);
+        copiedItems.splice(destination.index, 0, removed);
         const res = columns.map(el => {
-            if (el.id === source.droppableId) {     // айди элемента совпал с айди источника
-                return {...el, elements: copiedItems}  //  добавляем в массив элемент из копии массива column
+            if (el.id === source.droppableId) {
+                return {...el, elements: copiedItems}
             }
 
-            return el; // нет совпадений - возвращаем массив в прежнем виде
+            return el;
         })
-        setColumns(res); // вызов вышеописанной функции
+        setColumns(res);
     }
 };
 
 const CardList = (props) => {
 
-    const {addElements, columns, setColumns, onClickToggleElement, onClickColorTheme} = props;  // передаю массив колонок, добавление элементов, ф-я нажатия галочки
+    const {addElements, columns, setColumns, onClickToggleElement, onClickColorTheme} = props;
 
-    const addNewElementByList = (columnId, event) => { // ф-я добавления елемента в карточку
-        if (event.key === 'Enter') {                   // если ключ события 'Enter' (мы нажали Enter)
+    const addNewElementByList = (columnId, event) => {
+        if (event.key === 'Enter') {
 
-            const newElement = {                                // создаем элемент: {id: (здесь id из 3 символов)
-                id: nanoid(3), title: event.target.value, active: true  // title: (событие.поле.значениеПоля)
+            const newElement = {
+                id: nanoid(3), title: event.target.value, active: true
             }
 
-           addElements(columnId, newElement)  // вызываю ф-ю добавления элемента, передаю туда id и объект из ф-и
+           addElements(columnId, newElement)
 
-            event.target.value = '';  // ???????
+            event.target.value = '';
         }
     }
 
@@ -75,11 +75,11 @@ const CardList = (props) => {
 
     return (
         <DragDropContext
-            onDragEnd={(result) => {                    // резулт достаю из-под капота
-                onDragEnd(result, columns, setColumns)  // передаю еще стейт и юзстейт карточек
+            onDragEnd={(result) => {
+                onDragEnd(result, columns, setColumns)
             }}
         >
-            {columns.map((column) => {                  // перебор карточки
+            {columns.map((column) => {
                 return (
                     <div
                         style={{
@@ -120,12 +120,9 @@ const CardList = (props) => {
                                     </Grid>
                                     <Grid item>
                                         <Droppable droppableId={column.id.toString()} key={column.id.toString()}>
-                                            {(provided, snapshot) => (
+                                            {(provided) => (
                                                 <div
                                                     ref={provided.innerRef}
-                                                    style={{
-                                                        //backgroundColor: snapshot.isDragging ? 'green' : 'lightgreen',
-                                                    }}
                                                     {... provided.droppableProps}
                                                 >
                                                     {column?.elements.map((element, idx) => {
@@ -151,7 +148,7 @@ const CardList = (props) => {
                                                                             <CheckIcon
                                                                                 className={'check-of-element'}
                                                                                 onClick={() => {
-                                                                                    onClickToggleElement(column.id, element.id, element.active)  // повесил на онклик ф-ю, которая меняет состояние свойства active
+                                                                                    onClickToggleElement(column.id, element.id, element.active)
                                                                                 }}
                                                                             />
                                                                         </div>

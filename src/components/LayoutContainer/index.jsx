@@ -1,6 +1,6 @@
 import HomeFace from "../HomeFace";
 import ClearAll from "../ClearAll";
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import './LayoutContainer.scss'
 
 const LayoutContainer = ({children}) => {

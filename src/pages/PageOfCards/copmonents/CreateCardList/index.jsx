@@ -1,38 +1,38 @@
-import React, {useState} from "react";
-import {Grid, Button, TextField, IconButton} from "@mui/material";
+import React, { useState } from "react";
+import { Grid, Button, TextField, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import './CreateCardList.scss'
 import CardList from "../CardList";
-import {nanoid} from "nanoid";
-import {useDispatch, useSelector} from "react-redux";
-import {columnsSelector, addColumns, updateColumns} from "../../../../toolkit/cardDashboard/data";
+import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+import { columnsSelector, addColumns, updateColumns } from "../../../../toolkit/cardDashboard/data";
 
 
 const CreateCardList = () => {
 
     const [isVisibleAddList, setIsVisibleAddList] = useState(false);
-    const [inputValue, setInputValue] = useState('');   // это состояние поля ввода(при вводе оно очищается)
+    const [inputValue, setInputValue] = useState('');
 
     const columns = useSelector(columnsSelector);
 
-    const AddItemList = () => {                                  // это ф-я, открывающая при нажатии на "добавить список" невидимую часть этого компонента и прячущая эту кнопку
-        setIsVisibleAddList(true);                         // изменяет состояние на тру
+    const AddItemList = () => {
+        setIsVisibleAddList(true);
     }
 
-    const onClickHidden = () => {                               // это для крестика, действие обратное предыдущей ф-и
+    const onClickHidden = () => {
         setIsVisibleAddList(false);
     }
 
     const dispatch = useDispatch();
 
-    const onPressEnter = (event) => {                  // создаем ф-ю "нажатие на Enter"
-        if (event.key === 'Enter') {                   // если нажимается Enter
+    const onPressEnter = (event) => {
+        if (event.key === 'Enter') {
 
-            const obj = {                // предыдущее состояние массива дополняется элементом со св-вами:
-                title: event.target.value,         // свойство title будет такое, которое находится в инпуте
-                id: nanoid(5),                // id генерируется из 5 символов
-                elements: [],                       // свойство elements приходит в виде пустого массива
-                color: ''                           // цвет колонки
+            const obj = {
+                title: event.target.value,
+                id: nanoid(5),
+                elements: [],
+                color: ''
             }
 
             dispatch(addColumns(obj));
@@ -42,43 +42,43 @@ const CreateCardList = () => {
     }
 
     const addElements = (columnId, newElement) => {
-        const res = columns.map(el => {                        // мапим наш массив
-            if (el.id === columnId) {                               // если айди колонки совпадает с переданным айди
-                return {...el, elements: [...el.elements, newElement] } // вернем колонку, в ней добавляем новую строку
+        const res = columns.map(el => {
+            if (el.id === columnId) {
+                return {...el, elements: [...el.elements, newElement] }
             }
 
-            return el;                                              // возвращаем элемент без изменений(усл-е не выполн)
+            return el;
         })
 
         dispatch(updateColumns(res))
     }
 
     const onClickToggleElement = (columnId, elementId, active) => {
-        const col = columns.map(c => {                         // мапим наш массив
-            if (c.id === columnId) {                                // если айди колонки совпадет с переданным айди
-                return {...c, elements: c.elements.map(e => {       // вернем клонку, в ней мапим свойство elements
-                    if (e.id === elementId) {                       // если айди элемента совпадает с переданным айди
-                        return {...e, active: !active}                          // меняем в свойстве active булево значение
+        const col = columns.map(c => {
+            if (c.id === columnId) {
+                return {...c, elements: c.elements.map(e => {
+                    if (e.id === elementId) {
+                        return {...e, active: !active}
                     }
 
-                    return e                                        // возвращаем элемент без изменений(усл-е не выполн)
+                    return e
                 })
                 }
             }
-            return c;                            // возвращаем колонку без изменений(усл-е не выполн)
+            return c;
         })
 
-        dispatch(updateColumns(col))                                        // изменяем useState нашего setArrayOfLists
+        dispatch(updateColumns(col))
     }
 
-    const onClickColorTheme = (currentColor, columnId) => {     //
-        const res = columns.map(c => {                     // перебор нашего массива
-            if (c.id === columnId) {                            // если айди колонки = айди переданному
-                return  {...c, color: currentColor}             // возвращаем переданный цвет колонке
+    const onClickColorTheme = (currentColor, columnId) => {
+        const res = columns.map(c => {
+            if (c.id === columnId) {
+                return  {...c, color: currentColor}
             }
-            return c;                                           // если нет - оставляем текущий цвет
+            return c;
         })
-        dispatch(updateColumns(res));                                   // вызов ф-и
+        dispatch(updateColumns(res));
     }
 
     const setColumns = (res) => {
