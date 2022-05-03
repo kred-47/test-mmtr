@@ -79,7 +79,7 @@ const CardList = (props) => {
                 onDragEnd(result, columns, setColumns)  // передаю еще стейт и юзстейт карточек
             }}
         >
-            {columns.map((column) => {           // перебор карточки
+            {columns.map((column) => {                  // перебор карточки
                 return (
                     <div
                         style={{

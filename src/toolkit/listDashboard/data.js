@@ -15,7 +15,12 @@ export const listDataSlice = createSlice({
         },
         setCard: (state, {payload}) => {
             state.card = payload;
+        },
+        clearAllStates: state => {
+            state.list = [];
+            state.card = {};
         }
+
     }
 })
 
@@ -27,6 +32,6 @@ export const listSelector = createSelector(stateSelector, state => state.list);
 export const cardSelector = createSelector(stateSelector, state => state.card);
 
 
-export const { setList, setCard } = actions
+export const { setList, setCard, clearAllStates } = actions
 
 export default reducer;

@@ -16,7 +16,7 @@ const PageOfCards = () => {
                   className={'todo-card-container'}
                   direction={"column"}
             >
-                <Grid item className={'card'}>
+                <Grid item className={'card'} style={{backgroundColor: `${currentCard.color}`}}>
                     {currentCard?.title}
                 </Grid>
                 <Grid item>

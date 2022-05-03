@@ -1,0 +1,15 @@
+.layout-buttons {
+  display: flex;
+}
+
+.central-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.right-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}

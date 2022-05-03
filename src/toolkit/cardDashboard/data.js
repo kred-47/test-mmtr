@@ -14,6 +14,9 @@ export const cardDataSlice = createSlice({
         },
         updateColumns: (state, { payload }) => {
             state.columns = payload;
+        },
+        clearColumns: state => {
+            state.columns = [];
         }
     }
 })
@@ -24,6 +27,6 @@ const stateSelector = state => state.cardDashboard;
 
 export const columnsSelector = createSelector(stateSelector, state => state.columns);
 
-export const { addColumns, updateColumns } = actions
+export const { addColumns, updateColumns, clearColumns } = actions
 
 export default reducer;
