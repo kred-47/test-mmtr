@@ -29,7 +29,7 @@ const onDragEnd = (result,  columns, setColumns) => {
             return el;
         })
         setColumns(res);
-    } else {    // иначе
+    } else {
         const column = columns.find(column => column.id === source.droppableId);
         const copiedItems = [...column?.elements];
         const [removed] = copiedItems.splice(source.index, 1);

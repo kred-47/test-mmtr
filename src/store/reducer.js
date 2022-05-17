@@ -5,7 +5,6 @@ import { combineReducers } from 'redux';
 import listReducer from '../toolkit/listDashboard/data';
 import cardReducer from '../toolkit/cardDashboard/data';
 
-
 const dateTransform = createTransform(
   inboundState => {
     return JSON.stringify(inboundState, (key, value) => {

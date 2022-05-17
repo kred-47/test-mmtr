@@ -5,7 +5,7 @@ const cardDashboardDataAdapter = createEntityAdapter();
 export const cardDataSlice = createSlice({
     name: 'cardDashboard',
     initialState: cardDashboardDataAdapter.getInitialState({
-        columns: [], //массив карточек
+        columns: [],
         loader: false
     }),
     reducers: {
